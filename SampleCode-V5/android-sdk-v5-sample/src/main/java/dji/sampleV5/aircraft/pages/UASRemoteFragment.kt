@@ -26,24 +26,10 @@ class UASRemoteFragment : DJIFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.btnJp?.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_open_uas_jp_pag)
-        }
-        binding?.btnUs?.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_open_uas_us_page)
-        }
-        binding?.btnEu?.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_open_uas_european_page)
-        }
+       
         binding?.btnChina?.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_open_uas_chin_page)
         }
-        binding?.btnSingapore?.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_open_uas_singapore_page)
-        }
 
-        binding?.btnUae?.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_open_uas_uae_page)
-        }
     }
 }

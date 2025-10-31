@@ -23,54 +23,11 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/btn_france"
-                style="@style/main_fragment_btn"
-                android:text="Open France Page"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <Button
-                android:id="@+id/btn_jp"
-                style="@style/main_fragment_btn"
-                android:text="Open Japan Page"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_france" />
-
-            <Button
-                android:id="@+id/btn_us"
-                style="@style/main_fragment_btn"
-                android:text="Open America Page"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_jp" />
-
-            <Button
-                android:id="@+id/btn_eu"
-                style="@style/main_fragment_btn"
-                android:text="Open European Page"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_us" />
-
-            <Button
                 android:id="@+id/btn_china"
                 style="@style/main_fragment_btn"
                 android:text="Open China Page"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_eu" />
-
-            <Button
-                android:id="@+id/btn_singapore"
-                style="@style/main_fragment_btn"
-                android:text="Open Singapore Page"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_china" />
-
-
-            <Button
-                android:id="@+id/btn_uae"
-                style="@style/main_fragment_btn"
-                android:text="Open United Arab Emirates Page"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_singapore" />
+                app:layout_constraintTop_toTopOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
