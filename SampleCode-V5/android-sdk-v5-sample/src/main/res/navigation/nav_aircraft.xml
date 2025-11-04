@@ -18,34 +18,10 @@
         android:layout="@layout/frag_flight_record_page" />
 
     <fragment
-        android:id="@+id/flight_upgrade_page"
-        android:name="dji.sampleV5.aircraft.pages.UpgradeFragment"
-        android:label="flight_upgrade_page"
-        android:layout="@layout/frag_upgrade_page" />
-
-    <fragment
-        android:id="@+id/flight_simulator_page"
-        android:name="dji.sampleV5.aircraft.pages.SimulatorFragment"
-        android:label="flight_record_page"
-        android:layout="@layout/frag_simulator_page" />
-
-    <fragment
         android:id="@+id/waypoint_v3_page"
         android:name="dji.sampleV5.aircraft.pages.WayPointV3Fragment"
         android:label="waypoint_v3_page"
         android:layout="@layout/frag_waypointv3_page" />
-
-    <fragment
-        android:id="@+id/perception_page"
-        android:name="dji.sampleV5.aircraft.pages.PerceptionFragment"
-        android:label="perception_page"
-        android:layout="@layout/frag_perception_page" />
-
-    <fragment
-        android:id="@+id/uas_us_page"
-        android:name="dji.sampleV5.aircraft.pages.UASUSFragment"
-        android:label="uas_us_page"
-        tools:layout="@layout/frag_uas_us_page" />
 
     <fragment
         android:id="@+id/uas_china_page"
@@ -60,10 +36,6 @@
         tools:layout="@layout/frag_uas_page">
 
         <action
-            android:id="@+id/action_open_uas_us_page"
-            app:destination="@id/uas_us_page" />
-
-        <action
             android:id="@+id/action_open_uas_chin_page"
             app:destination="@id/uas_china_page" />
 
@@ -75,21 +47,4 @@
         android:label="fly_safe_page"
         android:layout="@layout/frag_fly_safe_page" />
 
-    <fragment
-        android:id="@+id/security_code_page"
-        android:name="dji.sampleV5.aircraft.pages.SecurityCodeFragment"
-        android:label="security_code_page"
-        tools:layout="@layout/frag_security_code_page" />
-
-    <fragment
-        android:id="@+id/look_at_page"
-        android:name="dji.sampleV5.aircraft.pages.LookAtFragment"
-        android:label="look_at_page"
-        tools:layout="@layout/frag_look_at_page"/>
-
-    <fragment
-        android:id="@+id/intelligent_flight_page"
-        android:name="dji.sampleV5.aircraft.pages.IntelligentFlightFragment"
-        android:label="intelligent_flight_page"
-        tools:layout="@layout/frag_intelligent_flight_page"/>
 </navigation>
