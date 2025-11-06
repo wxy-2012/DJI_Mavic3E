@@ -1,5 +1,4 @@
 package dji.sampleV5.aircraft.pages
-
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
