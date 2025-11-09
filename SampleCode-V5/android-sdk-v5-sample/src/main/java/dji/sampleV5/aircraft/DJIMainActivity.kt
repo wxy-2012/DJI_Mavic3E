@@ -168,9 +168,6 @@ abstract class DJIMainActivity : AppCompatActivity() {
         enableShowCaseButton(binding.defaultLayoutButton, cl)
     }
 
-    fun <T> enableWidgetList(cl: Class<T>) {
-        enableShowCaseButton(binding.widgetListButton, cl)
-    }
 
     fun <T> enableTestingTools(cl: Class<T>) {
         enableShowCaseButton(binding.testingToolButton, cl)

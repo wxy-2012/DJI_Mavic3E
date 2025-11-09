@@ -329,7 +329,7 @@ public class DefaultLayoutActivity extends AppCompatActivity {
         ComponentIndexType secondarySource = getSuitableSource(cameraList, ComponentIndexType.FPV);
         secondaryFPVWidget.updateVideoSource(secondarySource);
 
-        secondaryFPVWidget.setVisibility(View.VISIBLE);
+        secondaryFPVWidget.setVisibility(View.GONE);
     }
 
     private ComponentIndexType getSuitableSource(List<ComponentIndexType> cameraList, ComponentIndexType defaultSource) {

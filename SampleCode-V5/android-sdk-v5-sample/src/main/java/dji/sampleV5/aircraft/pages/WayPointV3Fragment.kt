@@ -1,6 +1,5 @@
 package dji.sampleV5.aircraft.pages
 
-
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
@@ -98,7 +97,6 @@ import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import java.io.File
 import java.io.IOException
-
 
 /**
  * @author feel.feng
