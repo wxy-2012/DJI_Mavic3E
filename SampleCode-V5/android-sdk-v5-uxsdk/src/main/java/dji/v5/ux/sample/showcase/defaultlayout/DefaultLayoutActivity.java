@@ -139,6 +139,12 @@ public class DefaultLayoutActivity extends AppCompatActivity {
         }
     };
 
+    // --- 新增变量 开始 ---
+    private ConstraintLayout.LayoutParams originalMapParams;
+    private boolean isMapFullscreen = false;
+    private View mapClickOverlay; // 新增一个变量
+    // --- 新增变量 结束 ---
+
     //endregion
 
     //region Lifecycle
@@ -168,6 +174,13 @@ public class DefaultLayoutActivity extends AppCompatActivity {
         gimbalAdjustDone = findViewById(R.id.fpv_gimbal_ok_btn);
         gimbalFineTuneWidget = findViewById(R.id.setting_menu_gimbal_fine_tune);
         mapWidget = findViewById(R.id.widget_map);
+
+        // --- 新增代码 开始 ---
+        // 绑定新的点击覆盖层
+        mapClickOverlay = findViewById(R.id.map_click_overlay);
+        // 保存地图原始的布局参数
+        originalMapParams = (ConstraintLayout.LayoutParams) mapWidget.getLayoutParams();
+        // --- 新增代码 结束 ---
 
         initClickListener();
         MediaDataCenter.getInstance().getCameraStreamManager().addAvailableCameraUpdatedListener(availableCameraUpdatedListener);
@@ -205,6 +218,11 @@ public class DefaultLayoutActivity extends AppCompatActivity {
     private void initClickListener() {
         secondaryFPVWidget.setOnClickListener(v -> swapVideoSource());
 
+        // --- 修改代码 开始 ---
+        // 将点击事件从 mapWidget 转移到 mapClickOverlay
+        mapClickOverlay.setOnClickListener(v -> toggleMapFullscreen());
+        // --- 修改代码 结束 ---
+
         if (settingWidget != null) {
             settingWidget.setOnClickListener(v -> toggleRightDrawer());
         }
@@ -227,6 +245,43 @@ public class DefaultLayoutActivity extends AppCompatActivity {
 
         });
     }
+
+    // --- 修改方法 开始 ---
+    /**
+     * 切换地图和FPV的全屏/画中画视图
+     */
+    private void toggleMapFullscreen() {
+        isMapFullscreen = !isMapFullscreen;
+        if (isMapFullscreen) {
+            // 地图全屏
+            fpvParentView.setVisibility(View.GONE); // 隐藏包含主副FPV的父视图
+            mapClickOverlay.setVisibility(View.GONE); // 隐藏点击覆盖层，以便操作地图
+
+            // 创建全屏的布局参数
+            ConstraintLayout.LayoutParams fullscreenParams = new ConstraintLayout.LayoutParams(
+                    ConstraintLayout.LayoutParams.MATCH_PARENT,
+                    ConstraintLayout.LayoutParams.MATCH_PARENT);
+
+            fullscreenParams.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
+            fullscreenParams.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
+            fullscreenParams.startToStart = ConstraintLayout.LayoutParams.PARENT_ID;
+            fullscreenParams.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID;
+
+            mapWidget.setLayoutParams(fullscreenParams);
+            mapWidget.bringToFront(); // 确保地图在最上层
+        } else {
+            // 恢复
+            fpvParentView.setVisibility(View.VISIBLE); // 重新显示FPV
+            mapClickOverlay.setVisibility(View.VISIBLE); // 重新显示点击覆盖层
+            mapWidget.setLayoutParams(originalMapParams); // 恢复地图原始的画中画参数
+
+            // --- 新增代码 ---
+            // 确保点击层在小地图之上
+            mapClickOverlay.bringToFront();
+            // --- 新增代码结束 ---
+        }
+    }
+    // --- 修改方法 结束 ---
 
     private void toggleRightDrawer() {
         mDrawerLayout.openDrawer(GravityCompat.END);
@@ -441,12 +496,23 @@ public class DefaultLayoutActivity extends AppCompatActivity {
         }
     }
 
+    // --- 修改方法 开始 ---
     @Override
     public void onBackPressed() {
+        // 1. 优先处理地图全屏的返回事件
+        if (isMapFullscreen) {
+            toggleMapFullscreen(); // 如果地图是全屏，则退出全屏
+            return; // 拦截返回事件，不继续执行
+        }
+
+        // 2. 处理抽屉菜单（设置面板）的返回事件
         if (mDrawerLayout.isDrawerOpen(GravityCompat.END)) {
             mDrawerLayout.closeDrawers();
-        } else {
+        }
+        // 3. 默认行为（关闭Activity）
+        else {
             super.onBackPressed();
         }
     }
+    // --- 修改方法 结束 ---
 }
